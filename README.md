@@ -23,10 +23,19 @@ Esta entrega implementa uma arquitetura em camadas com:
 - Maven 3.9+
 - Node 20+ e npm 10+
 
-## Executando backend + EJB
+## Executando backend + EJB (forma correta)
+> Execute os comandos abaixo na **raiz do projeto** (`bip-teste-integrado`).
+> Nao rode `spring-boot:run` no POM pai com `-am`, pois o modulo pai nao possui classe `main`.
+
 ```bash
-mvn clean verify
+mvn -pl ejb-module -am clean install -DskipTests
 mvn -pl backend-module spring-boot:run
+```
+
+Alternativa (se estiver dentro de `backend-module`):
+```bash
+mvn -f ..\pom.xml -pl ejb-module -am install -DskipTests
+mvn spring-boot:run
 ```
 
 API base: `http://localhost:8080/api/v1/beneficios`
@@ -65,9 +74,11 @@ Exemplo de transferencia:
 - Backend:
   - `BeneficioServiceIntegrationTest`
   - `BeneficioControllerIntegrationTest`
+  - executar com: `mvn -pl backend-module -am test`
 - Frontend:
   - `app.component.spec.ts`
   - `beneficio-api.service.spec.ts`
+  - executar com: `cd frontend && npm test -- --watch=false --browsers=ChromeHeadless`
 
 ## Banco de dados
 Scripts oficiais do desafio:
