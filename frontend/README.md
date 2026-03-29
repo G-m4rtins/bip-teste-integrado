@@ -1,3 +1,13 @@
 # Frontend Angular
 
-Starter Angular project deve ser criado pelo candidato.
+## Requisitos
+- Node.js 20+
+- npm 10+
+
+## Execucao
+```bash
+npm install
+npm start
+```
+
+A aplicacao sobe em `http://localhost:4200` e consome a API em `http://localhost:8080`.
